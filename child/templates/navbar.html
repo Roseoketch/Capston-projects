@@ -1,0 +1,44 @@
+{% load bootstrap3 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>childlinks</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'welcome' %}">Home</a>
+
+          <a class="navbar-brand" href="{% url 'welcome' %}">About</a>
+
+          <a class="navbar-brand" href="{% url 'welcome' %}">Contacts</a>
+        </div>
+      </div>
+
+        <!-- Adding a search form  -->
+        <div class="col-sm-4 col-md-4 navbar-right">
+
+          <form class="navbar-form" role="search" action="#">
+
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search Organization" name="article">
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+        <!-- search form end -->
+
+       </nav>
+
+  </body>
+</html>

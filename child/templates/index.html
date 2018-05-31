@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>childlinks</title>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <!-- <h1>Welcome to child links</h1> -->
+      {% block content %}
+      <div class="jumbotron">
+        <h1 class="text-center"> Welcome to childlinks site</h1>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4-md-4">
+            <p>We love you despise your situation in life</p>
+
+          </div>
+
+        </div>
+      </div>
+
+
+
+       {%endblock%}
+
+
+
+    </div>
+
+<div class="container">
+  <p>this is a brief description about us</p>
+</div>
+
+  </body>
+</html>
