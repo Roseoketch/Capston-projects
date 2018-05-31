@@ -4,6 +4,8 @@
   background-size: cover;
 } */
 body{
+  overflow-x: : hidden;
+  scroll-behavior: auto;
   background-image: url(../image/pexels.jpeg);
   background-repeat: no-repeat;
   background-size: cover;

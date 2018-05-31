@@ -12,15 +12,14 @@
     <div class="container">
 
       <div class="row">
-        {% if organizations %}
-          <h2>Found {{ organizations|length }} of searched term {{message}}</h2>
+        {% if categories %}
+          <h2>Found {{ categories|length }} of searched term {{message}}</h2>
         {% else %}
-          <h2> Found 0 organizations for the search term {{message}}</h2>
+          <h2> Found 0 categories for the search term {{message}}</h2>
         {% endif %}
       </div>
 
       <div class="row">
-
        {% if organizations %}
         {% for organization in organizations %}
           <div class="col-sm-6 col-md-3">

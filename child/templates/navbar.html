@@ -38,7 +38,36 @@
         </div>
         <!-- search form end -->
 
-       </nav>
+        <div class="col-sm-6 col-md-6">
+             {% if user.is_authenticated %}
+             <ul>
+               <li class="dropdown">
+                 <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
+                           <span class="caret"></span>
+                       </a>
+                 <ul class="dropdown-menu" role="menu">
+                   <!-- <li>
+                     <a href="{%url 'welcome'%}">Home</a>
+                   </li> -->
+                   <li>
+                     <a href="/accounts/password/change">Change Password</a>
+                   </li>
+                   <li>
+                     <a href="/logout">Logout</a>
+                   </li>
+                 </ul>
+               </li>
+             </ul>
+             {% else %}
+             <li>
+               <a class="nav-item nav-link active" href="{% url 'auth_login' %}">Login</a> <br><br>
+            <a href="/accounts/register/" class="nav-item nav-link active">Sign Up</a>
+
+             </li>
+
+             {% endif %}
+           </div>
+         </nav>
 
   </body>
 </html>

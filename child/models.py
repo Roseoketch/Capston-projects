@@ -24,7 +24,7 @@ class organization(models.Model):
     email = models.EmailField()
     time_uploaded = models.DateTimeField(auto_now_add=True,null=True)
     editor = models.ForeignKey(User,on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to ='profile/',blank=True,null=True)
+    profile_pic =models.ImageField(upload_to='profile/',blank=True,null=True)
 
 
     def __str__(self):
@@ -40,3 +40,21 @@ class organization(models.Model):
     def search_organization(cls,search_term):
         organization = cls.objects.filter(name__icontains=search_term)
         return organization
+
+
+class vacancies(models.Model):
+    category = models.ManyToManyField(categories)
+    number = models.PositiveIntegerField(default=0)
+    user = models.ForeignKey(User)
+    organization = models.ForeignKey(organization)
+
+
+
+    def __str__(self):
+        return self.vacancies
+
+    def save_vacancies(self):
+        self.save()
+
+    def delete_vacancies(self):
+        self.delete()
