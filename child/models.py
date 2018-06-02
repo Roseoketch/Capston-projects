@@ -3,58 +3,58 @@ from django.contrib.auth.models import User
 import datetime as dt
 
 # Create your models here.
-class categories(models.Model):
-    name = models.CharField(max_length=30)
+class Contact(models.Model):
+    """A person we can get in touch with about program(s)"""
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100, blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+    address = models.TextField(blank=True)
+
+    def __str__(self):
+        return "{} ({})".format(self.name, self.email)
+
+
+class Organization(models.Model):
+    """Organizations sponsor programs, e.g. Harvard or BU"""
+    name = models.CharField(max_length=200, unique=True)
+    site = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "{} ({})".format(self.name, self.site)
+
+
+class Program(models.Model):
+    name = models.CharField(max_length=200)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    description = models.TextField()
+
+    age_group = models.CharField(max_length=40)
+    topic = models.CharField(max_length=50, blank=True)
+    site = models.CharField(max_length=200)
+    location = models.CharField(max_length=50)
+
+    date = models.CharField(max_length=50, blank=True)
+    time = models.CharField(max_length=50, blank=True)
+
+    volunteer_app = models.CharField(max_length=50, blank=True)
+    volunteer_app_deadline = models.CharField(max_length=50, blank=True)
+    volunteer_time = models.CharField(max_length=100, blank=True)
+
+    student_app = models.CharField(max_length=50, blank=True)
+    student_app_deadline = models.CharField(max_length=50, blank=True)
+
+    nomination = models.CharField(max_length=50, blank=True)
+    nomination_deadline = models.CharField(max_length=50, blank=True)
+
+    cost = models.CharField(max_length=50)
+
+    scholarship_app = models.CharField(max_length=50, blank=True)
+    scholarship_app_deadline = models.CharField(max_length=50, blank=True)
+
+    contact = models.ForeignKey(Contact, on_delete=models.SET_NULL, null=True)
+
+    donations_accepted = models.BooleanField()
+    donations_link = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
         return self.name
-
-    def save_category(self):
-        self.save()
-
-    def delete_category(self):
-        self.delete()
-
-
-class organization(models.Model):
-    name = models.CharField(max_length = 60)
-    location = models.CharField(max_length = 60)
-    description =  models.TextField()
-    category = models.ManyToManyField(categories)
-    email = models.EmailField()
-    time_uploaded = models.DateTimeField(auto_now_add=True,null=True)
-    editor = models.ForeignKey(User,on_delete=models.CASCADE)
-    profile_pic =models.ImageField(upload_to='profile/',blank=True,null=True)
-
-
-    def __str__(self):
-        return self.name
-
-    def save_organization(self):
-        self.save()
-
-    def delete_organization(self):
-        self.delete()
-
-    @classmethod
-    def search_organization(cls,search_term):
-        organization = cls.objects.filter(name__icontains=search_term)
-        return organization
-
-
-class vacancies(models.Model):
-    category = models.ManyToManyField(categories)
-    number = models.PositiveIntegerField(default=0)
-    user = models.ForeignKey(User)
-    organization = models.ForeignKey(organization)
-
-
-
-    def __str__(self):
-        return self.vacancies
-
-    def save_vacancies(self):
-        self.save()
-
-    def delete_vacancies(self):
-        self.delete()

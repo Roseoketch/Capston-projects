@@ -1,7 +1,7 @@
 from django import forms
-from .models import organization, vacancies, categories, organization
+from .models import Contact,  Organization, Program
 
 class CreateProfileForm(forms.ModelForm):
     class Meta:
-        model = organization
+        model = Organization
         exclude = ['user']
