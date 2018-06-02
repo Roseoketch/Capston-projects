@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth import authenticate
 from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import categories, organization
@@ -38,6 +39,6 @@ def create_profile(request):
         form = CreateProfileForm()
     return render(request, 'profile/create_new.html', {"upload_form":form})
 
-
-
-# def organization_by_categories(request):
+# 
+# @login_required(login_url='/accounts/login')
+# def donate(request):

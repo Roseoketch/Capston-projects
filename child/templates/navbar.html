@@ -11,18 +11,22 @@
   </head>
   <body>
     <nav class="navbar navbar-inverse">
+    <div class="row">
+      <div class="col-sm-4 col-md-4">
+
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="{% url 'welcome' %}">Home</a>
 
-          <a class="navbar-brand" href="{% url 'welcome' %}">About</a>
+          <a class="navbar-brand" href="/about.html">About</a>
 
           <a class="navbar-brand" href="{% url 'welcome' %}">Contacts</a>
         </div>
       </div>
+    </div>
 
         <!-- Adding a search form  -->
-        <div class="col-sm-4 col-md-4 navbar-right">
+        <div class="col-sm-4 col-md-4">
 
           <form class="navbar-form" role="search" action="#">
 
@@ -38,7 +42,7 @@
         </div>
         <!-- search form end -->
 
-        <div class="col-sm-6 col-md-6">
+        <div class="col-sm-4 col-md-4" "navbar-right">
              {% if user.is_authenticated %}
              <ul>
                <li class="dropdown">
@@ -60,13 +64,17 @@
              </ul>
              {% else %}
              <li>
-               <a class="nav-item nav-link active" href="{% url 'auth_login' %}">Login</a> <br><br>
-            <a href="/accounts/register/" class="nav-item nav-link active">Sign Up</a>
+            <a class="nav-item nav-link active" "btn btn-primary" href="{% url 'auth_login' %}">Login</a>
+
+
+            <a href="/accounts/register/" class="nav-item nav-link active" "btn btn-primary" >Sign Up</a>
 
              </li>
 
              {% endif %}
            </div>
+         </div>
+
          </nav>
 
   </body>
