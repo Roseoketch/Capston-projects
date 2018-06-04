@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
-# from .models import categories, organization
+from .models import Contact, Organization,Program
 from .forms import CreateProfileForm
+from django.shortcuts import render_to_response
 # Create your views here.
 # @login_required(login_url='/accounts/login/')
 def welcome(request):
@@ -18,7 +19,7 @@ def search_results(request):
         search_term = request.GET.get("organization")
         searched_name = Organization.search_organization(search_term)
         message = f"{search_term}"
-        return render(request,'search.html',{"message":message,"organization":searched_organization,"categories":categories})
+        return render(request,'search.html',{"message":message,"organization":searched_organization})
 
     else:
         message = 'You havent searched for any term'
@@ -37,8 +38,36 @@ def create_profile(request):
             return redirect(organization)
     else:
         form = CreateProfileForm()
-    return render(request, 'profile/create_new.html', {"upload_form":form})
+    return render(request, 'profile/create_new.html', {"upload_form":form, "current_user":current_user})
 
 #
-# @login_required(login_url='/accounts/login')
-# def donate(request):
+# Volunteer views
+
+def volunteersIndex(request):
+	volunteer_list = Volunteer.objects.all()
+	return render_to_response('templates/users/volunteer/index.html', {'volunteer_list': volunteer_list})
+
+def volunteerDetails(request, volunteer_id):
+	v = Volunteer.objects.get(id=volunteer_id)
+	return render_to_response('templates/users/volunteer/details.html', {'volunteer':v})
+
+# Organizer views
+@login_required(login_url='/accounts/login/')
+def organizationIndex(request):
+        organization_list = Organization.objects.all()
+        return render_to_response('organizer/index.html', {'organization_list': organization_list})
+
+@login_required(login_url='/accounts/login/')
+def organizationDetails(request, organization_id):
+        o = get_object_or_404(Organization, ok = organization_id)
+        return render_to_response('organizer/details.html', {'organization': o})
+
+# Event views
+
+def eventsIndex(request):
+        event_list = Event.objects.all()
+        return render_to_response('users/event/index.html', {'event_list': event_list})
+
+def eventDetails(request, event_id):
+        e = get_object_or_404(Event, ek = event_id)
+        return render_to_response('users/event/details.html', {'event': e})

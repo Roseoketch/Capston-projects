@@ -1,0 +1,15 @@
+{% if organization_list %}
+        <ul>
+        {% for organization in organization_list %}
+                <li><a href="/organization/" target="_blank">{{ organization.name }}</a></li>
+                <!-- <p>  User: {{Program.name}}<br>
+                Volunteers: {{organization.volunteersSubcribed}}<br>
+                Events: {{organization.eventsOrganized}}<br>
+                Sports: {{organizer.sports}} -->
+               <!-- </p> -->
+                <!-- <li><a href="/program/"></a>{{program.description}}</li> -->
+        {% endfor %}
+        </ul>
+{% else %}
+        <p>No organization are available.</p>
+{% endif %}
