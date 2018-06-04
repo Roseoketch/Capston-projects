@@ -19,6 +19,7 @@ class Organization(models.Model):
     name = models.CharField(max_length=200, unique=True)
     site = models.CharField(max_length=100)
     description = models.TextField()
+    contact = models.CharField(max_length=12)
     def __str__(self):
         return "{} ({})".format(self.name, self.site)
 
