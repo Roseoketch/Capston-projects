@@ -18,7 +18,7 @@ class Organization(models.Model):
     """Organizations sponsor programs, e.g. Harvard or BU"""
     name = models.CharField(max_length=200, unique=True)
     site = models.CharField(max_length=100)
-
+    description = models.TextField()
     def __str__(self):
         return "{} ({})".format(self.name, self.site)
 

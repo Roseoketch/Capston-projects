@@ -54,8 +54,11 @@ def volunteerDetails(request, volunteer_id):
 # Organizer views
 @login_required(login_url='/accounts/login/')
 def organizationIndex(request):
+        contact = Contact.objects.all()
+        program = Program.objects.all()
         organization_list = Organization.objects.all()
-        return render_to_response('organizer/index.html', {'organization_list': organization_list})
+        print(organization_list)
+        return render_to_response('organizer/index.html', {'organization_list': organization_list, "contact":contact, "program":program})
 
 @login_required(login_url='/accounts/login/')
 def organizationDetails(request, organization_id):

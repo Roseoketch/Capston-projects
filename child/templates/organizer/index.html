@@ -1,13 +1,14 @@
 {% if organization_list %}
         <ul>
         {% for organization in organization_list %}
-                <li><a href="/organization/" target="_blank">{{ organization.name }}</a></li>
-                <!-- <p>  User: {{Program.name}}<br>
-                Volunteers: {{organization.volunteersSubcribed}}<br>
-                Events: {{organization.eventsOrganized}}<br>
-                Sports: {{organizer.sports}} -->
-               <!-- </p> -->
-                <!-- <li><a href="/program/"></a>{{program.description}}</li> -->
+            <li><a href="/organization/" target="_blank"> Name:{{ organization.name }}</a></li>
+            <div class="card-body">
+
+              <p class="card-text">Description:{{organization.description}}</p>
+              <p class="card-text">Location: {{organization.site}}</p>
+              <p class="card-text">Contact: {{organization.phone}}</p>
+
+            </div>
         {% endfor %}
         </ul>
 {% else %}
